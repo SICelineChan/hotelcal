@@ -1,11 +1,17 @@
 import { useState } from "react";
 
 export default function RoomTypePerNight() {
-  const [roomType, setRoomType] = useState("");
-  const [selectedFruit, setSelectedFruit] = useState("");
-
-  const [night, setNight] = useState("1");
+  const [roomType, setRoomType] = useState("select");
+  const [night, setNight] = useState("0");
   const addNightNummer = Number(night);
+
+  const onOptionChange = (e) => {
+    setRoomType(e.target.value);
+  };
+
+  let standardCost = night * 90;
+  let deluxeCost = night * 150;
+  let superiorCost = night * 220;
 
   return (
     <>
@@ -14,14 +20,43 @@ export default function RoomTypePerNight() {
       <p>Deluxe Room - €150</p>
       <p>Superior Room - €220</p>
       <label>
-        Room Type -
+        Please select the room type:
         <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
+          <option value="select">Select</option>
           <option value="standard">Standard</option>
           <option value="deluxe">Deluxe</option>
           <option value="superior">Superior</option>
         </select>
       </label>
-
+      {/* <br />
+      <input
+        type="radio"
+        name="standard"
+        value={roomType}
+        id="standard"
+        checked={roomType === "standard"}
+        onChange={onOptionChange}
+      />
+      <label htmlFor="standard">Standard Room</label>
+      <input
+        type="radio"
+        name="deluxe"
+        value={roomType}
+        id="deluxe"
+        checked={roomType === "deluxe"}
+        onChange={onOptionChange}
+      />
+      <label htmlFor="deluxe">Deluxe Room</label>
+      <input
+        type="radio"
+        name="superior"
+        value={roomType}
+        id="superior"
+        checked={roomType === "superior"}
+        onChange={onOptionChange}
+      />
+      <label htmlFor="superior">Superior Room</label>
+      <br /> */}
       <label>
         Number of nights:
         <input
@@ -37,27 +72,29 @@ export default function RoomTypePerNight() {
           Add 1 night
         </button>
       </label>
-      <label>
-        Pick a fruit:
-        <select
-          value={selectedFruit}
-          onChange={(e) => setSelectedFruit(e.target.value)}
-        >
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
-        </select>
-      </label>
 
-      <p>Your chosen Room Type: {roomType} </p>
-      <p></p>
-      {/* {roomType !== "standard" && (
-        <p>Cost to pay for the chosen room :({night * 1}*90)</p>
-      )} */}
+      <hr />
+
+      {roomType === "standard" && (
+        <p>
+          For the {roomType}, the cost to pay for the chosen room : €
+          {standardCost}
+        </p>
+      )}
+      {roomType === "deluxe" && (
+        <p>
+          For the {roomType}, the cost to pay for the chosen room : €
+          {deluxeCost}
+        </p>
+      )}
+      {roomType === "superior" && (
+        <p>
+          For the {roomType}, the cost to pay for the chosen room : €
+          {superiorCost}
+        </p>
+      )}
 
       {addNightNummer > 1 && <p>Number of night staying is: {night}.</p>}
-      <p></p>
-      <p>Your favorite fruit: {selectedFruit}</p>
     </>
   );
 }
