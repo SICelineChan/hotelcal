@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import RoomTypePerNight from "./Components/RoomTypePerNight";
+import AddingBreakfast from "./Components/AddingBreakfast";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         Our price per night for a normal room is 90 €, please select how many
         nights that you would like to stay and the cost is shown below.
       </p>
+
       <RoomTypePerNight></RoomTypePerNight>
+      <AddingBreakfast></AddingBreakfast>
     </div>
   );
 }

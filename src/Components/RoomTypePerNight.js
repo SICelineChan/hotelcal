@@ -1,13 +1,10 @@
 import { useState } from "react";
+import AddingBreakfast from "./AddingBreakfast";
 
 export default function RoomTypePerNight() {
   const [roomType, setRoomType] = useState("select");
-  const [night, setNight] = useState("0");
+  const [night, setNight] = useState("1");
   const addNightNummer = Number(night);
-
-  const onOptionChange = (e) => {
-    setRoomType(e.target.value);
-  };
 
   let standardCost = night * 90;
   let deluxeCost = night * 150;
@@ -15,48 +12,26 @@ export default function RoomTypePerNight() {
 
   return (
     <>
-      <h1>Our Price List for our 3 room types per night are as follow</h1>
+      <h2>Our Price List for our 3 room types per night are as follow:</h2>
+      <h4>For 2 guests staying in our - </h4>
       <p>Standard Room - €90</p>
       <p>Deluxe Room - €150</p>
       <p>Superior Room - €220</p>
       <label>
+        <br />
         Please select the room type:
-        <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
+        <select
+          value={roomType}
+          placeholder="please select"
+          onChange={(e) => setRoomType(e.target.value)}
+        >
           <option value="select">Select</option>
           <option value="standard">Standard</option>
           <option value="deluxe">Deluxe</option>
           <option value="superior">Superior</option>
         </select>
       </label>
-      {/* <br />
-      <input
-        type="radio"
-        name="standard"
-        value={roomType}
-        id="standard"
-        checked={roomType === "standard"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="standard">Standard Room</label>
-      <input
-        type="radio"
-        name="deluxe"
-        value={roomType}
-        id="deluxe"
-        checked={roomType === "deluxe"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="deluxe">Deluxe Room</label>
-      <input
-        type="radio"
-        name="superior"
-        value={roomType}
-        id="superior"
-        checked={roomType === "superior"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="superior">Superior Room</label>
-      <br /> */}
+      <br />
       <label>
         Number of nights:
         <input
