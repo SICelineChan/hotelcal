@@ -1,16 +1,24 @@
 import { useState } from "react";
 
-export default function AddingBreakfast() {
+export default function AddingBreakfast(props) {
   const [breakfastAdded, setBreakfastAdded] = useState("");
 
   const onOptionChange = (e) => {
     setBreakfastAdded(e.target.value);
   };
 
+  function addBreakfast (e) {
+
+    console.log(breakfastAdded + " to breakfast");
+    props.onAdd(breakfastAdded);
+    e.preventDefault();
+  }
+  
+
   return (
     <div>
       <h2>Select to add breakfast</h2>
-      <h3>€7.50 per Person per night.</h3>
+      <h3>€12 per night.</h3>
 
       <input
         type="radio"
@@ -32,8 +40,9 @@ export default function AddingBreakfast() {
         onChange={onOptionChange}
       />
       <label htmlFor="noBreakfast">No</label>
+      <button onClick={addBreakfast}>Add</button>
       <p>
-        You have selected <em> {breakfastAdded} </em>for breakfast
+        You have selected <em> {breakfastAdded} </em>for breakfast.
       </p>
     </div>
   );

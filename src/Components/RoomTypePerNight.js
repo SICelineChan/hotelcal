@@ -1,22 +1,38 @@
 import { useState } from "react";
-import AddingBreakfast from "./AddingBreakfast";
 
-export default function RoomTypePerNight() {
+export default function RoomTypePerNight({props, bookedNights}) {
   const [roomType, setRoomType] = useState("select");
   const [night, setNight] = useState("1");
-  const addNightNummer = Number(night);
+  
 
-  let standardCost = night * 90;
-  let deluxeCost = night * 150;
-  let superiorCost = night * 220;
+  let standardCost = night * 100;
+  let deluxeCost = night * 200;
+  let superiorCost = night * 300;
 
+  function setTotalNumberOfNight () {
+    console.log("the total night is " + night);
+    let totalCost = 0;
+    if (roomType === "select") {
+      totalCost += standardCost
+      console.log(totalCost);
+    } else if (roomType === "deluxe") {
+      totalCost += deluxeCost
+      console.log(totalCost);
+    } else if (roomType === "superior") {
+      totalCost += superiorCost
+      console.log(totalCost);
+  }
+  
+  console.log(totalCost);
+
+
+}
   return (
     <>
       <h2>Our Price List for our 3 room types per night are as follow:</h2>
-      <h4>For 2 guests staying in our - </h4>
-      <p>Standard Room - €90</p>
+      <p>Standard Room - €100</p>
       <p>Deluxe Room - €150</p>
-      <p>Superior Room - €220</p>
+      <p>Superior Room - €250</p>
       <label>
         <br />
         Please select the room type:
@@ -40,11 +56,9 @@ export default function RoomTypePerNight() {
           type="number"
         />
         <button
-          onClick={() => {
-            setNight(addNightNummer + 1);
-          }}
+          onClick={setTotalNumberOfNight}
         >
-          Add 1 night
+          submit
         </button>
       </label>
 
@@ -69,7 +83,9 @@ export default function RoomTypePerNight() {
         </p>
       )}
 
-      {addNightNummer > 1 && <p>Number of night staying is: {night}.</p>}
+      {<p>Number of night staying is: {night}.</p>}
+      {<p>{bookedNights}</p>} 
+      
     </>
   );
 }
