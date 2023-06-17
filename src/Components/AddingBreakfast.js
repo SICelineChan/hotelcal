@@ -7,14 +7,8 @@ export default function AddingBreakfast(props) {
     setBreakfastAdded(e.target.value);
   };
 
-  function addBreakfast (e) {
-
-    console.log(breakfastAdded + " to breakfast");
-    props.onAdd(breakfastAdded);
-    e.preventDefault();
-  }
   
-
+  
   return (
     <div>
       <h2>Select to add breakfast</h2>
@@ -40,10 +34,12 @@ export default function AddingBreakfast(props) {
         onChange={onOptionChange}
       />
       <label htmlFor="noBreakfast">No</label>
-      <button onClick={addBreakfast}>Add</button>
-      <p>
-        You have selected <em> {breakfastAdded} </em>for breakfast.
-      </p>
+
+      <button onClick={()=>{
+        props.onAdd(breakfastAdded);
+        setBreakfastAdded("");
+      }}>Add</button>
+  
     </div>
   );
 }
